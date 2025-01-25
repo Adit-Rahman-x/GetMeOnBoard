@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import './App.css'
-
+import VidMessage from './VidMessage'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      
+  
     </>
   )
 }
