@@ -110,10 +110,29 @@ const Quiz = () => {
             style={{
                 backgroundColor: 'f9f9f9',
             }}>
+            <h1 style={{ textAlign: 'center' }}>QUIZ</h1>
 
             <button
                 onClick={() => setIsEmployerView(!isEmployerView)}
-                style={{ position: 'relative', top: '10px', right: '10px' }}
+                style={{
+                    padding: "10px 20px",
+                    margin: "0 45%",
+                    backgroundColor: "#4b9bc2",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    transition: "transform 0.3s ease, background-color 0.35s ease",
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#007BFF";
+                    e.target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#4b9bc2";
+                    e.target.style.transform = "scale(1)";
+                }}
             >
                 Switch to {isEmployerView ? 'Employee' : 'Employer'} View
             </button>

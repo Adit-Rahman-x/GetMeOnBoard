@@ -99,7 +99,7 @@ const SectionPage = () => {
         <h1 style={{ marginBottom: "20px" }}>Information Section Panel Maker</h1>
         <p
             style={{
-                textAlign: "center",
+                textAlign: "left",
                 fontSize: "18px",
                 marginTop: "0",
                 marginBottom: "30px",
@@ -112,9 +112,9 @@ const SectionPage = () => {
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
             }}
             >
-            This is the panel maker! It allows you to <strong>create</strong> and <strong>save</strong> sections of information new employees need to learn about in a user-friendly way on both ends.<br />
-            The page consists of a <strong>title</strong> and an <strong>explanation section</strong>. You can edit the content of these sections by simply tapping on the text and saving your progress. <br />
-            You can <strong>create a backup</strong> of your progress and upload it later to continue editing using the buttons found on the bottom. <br />
+            <strong>This is the panel maker!</strong> It allows you to <strong>create</strong> and <strong>save</strong> sections of information new employees need to learn about in a user-friendly way on both ends.<br /> <br />
+            The page consists of a <strong>title</strong> and an <strong>explanation section</strong>. You can edit the content of these sections by simply tapping on the text and saving your progress. <br /> <br />
+            You can <strong>create a backup</strong> of your progress and upload it later to continue editing using the buttons found on the bottom. <br /> <br />
             To see what the page will look like on the employee's side, click the <strong>"Switch to Employee View"</strong> button below.
             </p>
         

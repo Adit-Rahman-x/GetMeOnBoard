@@ -60,6 +60,7 @@ const QuizComponent = ({
                                         handleUpdateQuestion(q.id, { question: e.target.value })
                                     }
                                     style={{
+                                        font: 'inherit',
                                         width: '100%',
                                         fontSize: '14px',
                                         border: 'solid black',
@@ -146,6 +147,7 @@ const QuizComponent = ({
                                         border: 'none',
                                         borderRadius: '8px',
                                         cursor: 'pointer',
+                                        marginTop: '10px',
                                         fontSize: '16px',
                                         transition: 'transform 0.3s ease, background-color 0.35s ease',
                                     }}

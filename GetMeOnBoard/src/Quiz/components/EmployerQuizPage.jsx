@@ -13,7 +13,6 @@ const EmployerQuizPage = ({
 }) => {
     return (
         <div>
-            <h1 style={{ textAlign: 'center' }}>QUIZ</h1>
             <Quiz
                 isEmployerView={true}
                 questions={questions}
