@@ -1,6 +1,14 @@
 import React from "react";
 
-function Comment({ timeElapsed, commentList, onAddComment, isPlaying }) {
+function Comment({ timeElapsed, commentList, onAddComment, isPlaying, videoRef }) {
+
+  const handleJumpToTimeStamp = (time) => {
+    if (videoRef && videoRef.current) {
+      videoRef.current.currentTime = time; // Change the video time
+      videoRef.current.play(); // Optionally play the video
+    }
+  }
+
   return (
     <div>
       <h3>Chat</h3>
@@ -9,10 +17,19 @@ function Comment({ timeElapsed, commentList, onAddComment, isPlaying }) {
           commentList.map((comment, index) => (
             <div key={index} style={{ marginBottom: "10px" }}>
               <p>
-                <strong>
+              <button onClick={() => handleJumpToTimeStamp(comment.time)}
+                        style={{
+                          color: "blue",
+                          background: "none",
+                          border: "none",
+                          textDecoration: "underline",
+                          cursor: "pointer",
+                        }}>
                   {Math.floor(comment.time / 60)}:
                   {Math.floor(comment.time % 60).toString().padStart(2, "0")}
-                </strong>{" "}
+
+                </button>
+                {" "}
                 {comment.text}
               </p>
             </div>

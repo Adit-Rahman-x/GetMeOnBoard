@@ -1,10 +1,9 @@
 import { useRef } from 'react';
 import React, { useState } from 'react';
-import './App.css';
-import VideoUpload from './MapSection/components/video';
-import StepbyStep from './StepbyStep';
+import VideoUpload from './components/video';
+import StepbyStep from './components/StepbyStep';
 
-function App() {
+function MapSection() {
   const [videoRef, setVideoRef] = useState(null);
   const [commentList, setCommentList] = useState([]);
 
@@ -37,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default MapSection;

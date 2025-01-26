@@ -223,6 +223,7 @@ const VideoUpload = ({ setVideoRef }) => {
         }}
       >
         <Comment
+        videoRef={videoRef}
           timeElapsed={timeElapsed}
           commentList={commentList}
           onAddComment={handleAddComment}
