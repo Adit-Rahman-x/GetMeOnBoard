@@ -7,13 +7,12 @@ import SectionPage from "./SectionUI/SectionPage";
 import Quiz from "./Quiz/Quiz";
 
 const App = () => {
-  const [currentView, setCurrentView] = useState("Home"); // Track the current view
+  const [currentView, setCurrentView] = useState("Home");
 
-  // Function to render the component based on the selected view
   const renderView = () => {
     switch (currentView) {
       case "Home":
-        return <HomePage />;
+        return <HomePage setCurrentView={setCurrentView} />;
       case "Section Maker":
         return <SectionPage />;
       case "Interactive Tour Guide":
@@ -21,14 +20,14 @@ const App = () => {
       case "Section Quiz":
         return <Quiz />;
       default:
-        return <HomePage />; // Default view
+        return <HomePage setCurrentView={setCurrentView} />;
     }
   };
 
   return (
     <>
-      <Navbar setCurrentView={setCurrentView} /> {/* Pass setCurrentView to Navbar */}
-      {renderView()} {/* Render the selected component */}
+      <Navbar setCurrentView={setCurrentView} />
+      {renderView()}
     </>
   );
 };
