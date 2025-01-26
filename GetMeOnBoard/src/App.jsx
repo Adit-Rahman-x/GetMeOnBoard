@@ -3,12 +3,11 @@ import React,{ useState } from 'react'
 import './App.css'
 import VideoUpload from './MapSection/components/video'
 
-const App = () => {
-  const [videoRef, setVideoRef] = useState(null);
-import VidMessage from './VidMessage'
-import VidTimeStamps from './VidTimeStamp'
 import StepbyStep from './StepbyStep'
+
 function App() {
+  const [videoRef, setVideoRef] = useState(null);
+
   const [mainpoint, setCount] = useState(0)
 
   return (
