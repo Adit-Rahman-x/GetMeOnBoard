@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import './App.css'
-import SectionPage from './SectionUI/SectionPage'
+import VideoUpload from './MapSection/components/video'
 
 const App = () => {
+  const [videoRef, setVideoRef] = useState(null);
+
   return (
     <>
+    <VideoUpload setVideoRef={setVideoRef}/>
     </>
   )
 }
