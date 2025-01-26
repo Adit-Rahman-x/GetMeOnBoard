@@ -1,77 +1,34 @@
-import React, { useState } from "react";
+import React, { forwardRef, useEffect } from "react";
 
-const EditableText = ({
-  defaultText = "Editable Text",
-  fontSize = "16px",
-  fontWeight = "normal",
-  color = "#000",
-  onTextChange,
-}) => {
-  const [text, setText] = useState(defaultText);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleTextClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleTextChange = (e) => {
-    setText(e.target.value);
-    if (onTextChange) {
-      onTextChange(e.target.value);
+const EditableText = forwardRef(({ defaultText, fontSize, fontWeight, color, placeholder=""}, ref) => {
+  useEffect(() => {
+    if (ref?.current) {
+      ref.current.innerText = defaultText; // Initialize content with the default text
     }
-  };
-
-  const handleBlur = () => {
-    setIsEditing(false);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      setIsEditing(false);
-    }
-  };
+  }, [defaultText, ref]);
 
   return (
-    <div style={{ 
-        width: "50%",
-        position: "relative",
-    }}>
-      {isEditing ? (
-        <input
-          type="text"
-          value={text}
-          onChange={handleTextChange}
-          onBlur={handleBlur}
-          onKeyPress={handleKeyPress}
-          autoFocus
-          style={{
-            width: "100%",
-            fontSize,
-            fontWeight,
-            color,
-            padding: "5px",
-            border: "2px solid #aaa",
-            borderRadius: "8px",
-            outline: "none",
-          }}
-        />
-      ) : (
-        <span
-          onClick={handleTextClick}
-          style={{
-            fontSize,
-            fontWeight,
-            color,
-            cursor: "pointer",
-            borderBottom: "1px dashed #ccc",
-          }}
-          title="Click to edit text"
-        >
-          {text}
-        </span>
-      )}
-    </div>
+    <div
+      ref={ref}
+      contentEditable
+      suppressContentEditableWarning
+      style={{
+        fontSize: fontSize || "16px", // Apply font size or default
+        fontWeight: fontWeight || "normal", // Apply font weight or default
+        color: color || "#000", // Apply text color or default
+        padding: "8px",
+        //border: "1px solid #ccc",
+        borderBottom: "1px dashed #ccc",
+        borderRadius: "4px",
+        width: "80%",
+        cursor: "text",
+        outline: "none",
+        whiteSpace: "pre-wrap", // Preserve line breaks
+        wordWrap: "break-word", // Wrap long words
+      }}
+      data-placeholder={placeholder}
+    />
   );
-};
+});
 
 export default EditableText;
