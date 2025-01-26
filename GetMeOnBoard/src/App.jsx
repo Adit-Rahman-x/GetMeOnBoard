@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Navbar from "./SectionUI/components/NavBar";
 import HomePage from "./HomePage/HomePage";
-import VideoUpload from "./MapSection/components/video";
+//import VideoUpload from "./MapSection/components/video";
+import MapSection from "./MapSection/MapSection";
 import SectionPage from "./SectionUI/SectionPage";
 import Quiz from "./Quiz/Quiz";
 
@@ -16,7 +17,7 @@ const App = () => {
       case "Section Maker":
         return <SectionPage />;
       case "Interactive Tour Guide":
-        return <VideoUpload />;
+        return <MapSection />;
       case "Section Quiz":
         return <Quiz />;
       default:
