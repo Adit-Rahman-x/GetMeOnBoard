@@ -39,6 +39,8 @@ const DragAndDropBox = ({ isEmployeeView }) => {
         border: isEmployeeView ? "none" : "2px dashed #aaa",
         borderRadius: "8px",
         padding: "20px",
+        width: "80%",
+        minHeight: "200px",
         textAlign: "center",
         cursor: isEmployeeView ? "default" : "pointer",
         marginBottom: "20px",
@@ -50,13 +52,13 @@ const DragAndDropBox = ({ isEmployeeView }) => {
           <img
             src={URL.createObjectURL(mediaFile)}
             alt="Uploaded"
-            style={{ maxWidth: "100%", maxHeight: "200px", borderRadius: "8px" }}
+            style={{ maxWidth: "100%", maxHeight: "450px", borderRadius: "8px" }}
           />
         ) : (
           <video
             controls
             src={URL.createObjectURL(mediaFile)}
-            style={{ maxWidth: "100%", maxHeight: "200px", borderRadius: "8px" }}
+            style={{ maxWidth: "100%", maxHeight: "450px", borderRadius: "8px" }}
           />
         )
       ) : isEmployeeView ? (

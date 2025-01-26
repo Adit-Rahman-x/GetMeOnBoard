@@ -56,8 +56,11 @@ const SectionPage = () => {
   };
 
   const saveTitleAndExplanation = () => {
-    const updatedTitle = titleRef.current?.innerText || title;
-    const updatedExplanation = explanationRef.current?.innerText || explanation;
+    const updatedTitle = titleRef.current?.innerText.replace(/\n/g, "\n") || title;
+    const updatedExplanation = explanationRef.current?.innerText.replace(/\n/g, "\n") || explanation;
+
+    console.log(updatedTitle);
+    console.log(updatedExplanation);
 
     setTitle(updatedTitle);
     setExplanation(updatedExplanation);
@@ -154,8 +157,14 @@ const SectionPage = () => {
 
         {isEmployeeView ? (
           <div style={{ textAlign: "left", width: "80%" }}>
-            <h1 style={{ fontSize: "36px", fontWeight: "bold", marginBottom: "10px" }}>{title}</h1>
-            <p style={{ fontSize: "18px", marginBottom: "20px" }}>{explanation}</p>
+            <h1 style={{ fontSize: "36px", fontWeight: "bold", marginBottom: "10px" }} 
+            dangerouslySetInnerHTML={{
+                __html: title.replace(/\n/g, "<br>"), // Replace \n with <br> for rendering
+              }}/>
+            <p style={{ fontSize: "18px", marginBottom: "20px" }}
+            dangerouslySetInnerHTML={{
+                __html: explanation.replace(/\n/g, "<br>"), // Replace \n with <br> for rendering
+              }}/>
           </div>
         ) : (
           <>
