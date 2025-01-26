@@ -1,5 +1,4 @@
 import React from 'react';
-import EditableText from './EditableText';
 
 const QuizComponent = ({
     isEmployerView,
@@ -24,20 +23,31 @@ const QuizComponent = ({
                         <div
                             key={q.id}
                             style={{
-                                border: '4px solid black',
+                                border: '6px solid black', // Increased border thickness for the question box
                                 borderRadius: '8px',
                                 padding: '16px',
                                 marginBottom: '16px',
                             }}
                         >
+                            {/* Question Section */}
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <h3>
-                                    <EditableText
-                                        defaultText={q.question}
-                                        fontSize="18px"
-                                        fontWeight="bold"
-                                        color="#333"
-                                        onTextChange={(newText) => handleUpdateQuestion(q.id, newText)}
+                                    <textarea
+                                        type="text"
+                                        value={q.question || ''} // Ensure an empty string if undefined
+                                        onChange={(e) =>
+                                            handleUpdateQuestion(q.id, { question: e.target.value }) // Pass only the string value
+                                        }
+                                        style={{
+                                            flexGrow: 1, // Ensures it takes the same width as option textboxes
+                                            fontSize: '14px', // Match the font size of options
+                                            border: '4px solid black',
+                                            padding: '8px',
+                                            borderRadius: '4px',
+                                            resize: 'none', // Prevent manual resizing
+                                            overflowWrap: 'break-word', // Handle long words
+                                            wordWrap: 'break-word',
+                                        }}
                                     />
                                 </h3>
                                 <button
@@ -49,41 +59,54 @@ const QuizComponent = ({
                                         borderRadius: '5px',
                                         padding: '5px 10px',
                                         cursor: 'pointer',
+                                        marginLeft: '10px',
                                     }}
                                 >
                                     Delete Question
                                 </button>
                             </div>
-                            {q.media && <img src={q.media} alt="Question Media" />}
-                            <div>
-                                {q.options.map((option, index) => (
-                                    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
-                                        <EditableText
-                                            defaultText={option}
-                                            fontSize="16px"
-                                            fontWeight="normal"
-                                            color="#555"
-                                            onTextChange={(newText) => handleUpdateOption(q.id, index, newText)}
-                                        />
-                                        <button
-                                            onClick={() => handleDeleteOption(q.id, index)}
-                                            style={{ marginLeft: '10px', color: 'red' }}
-                                        >
-                                            Delete Option
-                                        </button>
-                                        <input
-                                            type="checkbox"
-                                            checked={q.correctAnswers.includes(option)}
-                                            onChange={() => handleSetCorrectAnswer(q.id, option)}
-                                            style={{ marginLeft: '10px' }}
-                                        />
-                                        <span style={{ marginLeft: '5px' }}>Correct</span>
-                                    </div>
-                                ))}
-                                {q.options.length < 4 && (
-                                    <button onClick={() => handleAddOption(q.id)}>Add Option</button>
-                                )}
-                            </div>
+
+                            {/* Options Section */}
+                            {q.options.map((option, index) => (
+                                <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                                    <input
+                                        type="text"
+                                        value={option}
+                                        onChange={(e) =>
+                                            handleUpdateOption(q.id, index, e.target.value)
+                                        }
+                                        style={{
+                                            flexGrow: 1,
+                                            marginRight: '8px',
+                                            fontSize: '14px',
+                                        }}
+                                    />
+                                    <button
+                                        onClick={() => handleDeleteOption(q.id, index)}
+                                        style={{
+                                            marginLeft: '10px',
+                                            color: 'red',
+                                            border: 'none',
+                                            background: 'none',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        ✖
+                                    </button>
+                                    <input
+                                        type={q.correctAnswers.length === 1 ? 'radio' : 'checkbox'}
+                                        checked={q.correctAnswers.includes(option)}
+                                        onChange={() => handleSetCorrectAnswer(q.id, option)}
+                                        style={{ marginLeft: '10px' }}
+                                    />
+                                    <span style={{ marginLeft: '5px' }}>Correct</span>
+                                </div>
+                            ))}
+                            {q.options.length < 4 && (
+                                <button onClick={() => handleAddOption(q.id)}>
+                                    Add Option
+                                </button>
+                            )}
                         </div>
                     ))}
                     <button onClick={handleAddQuestion}>Add Question</button>
@@ -94,28 +117,26 @@ const QuizComponent = ({
                         <div
                             key={q.id}
                             style={{
-                                border: '4px solid black',
+                                border: '6px solid black', // Increased border thickness for the question box
                                 borderRadius: '8px',
                                 padding: '16px',
                                 marginBottom: '16px',
                             }}
                         >
                             <h3>{q.question}</h3>
-                            {q.media && <img src={q.media} alt="Question Media" />}
                             <div>
                                 {q.options.map((option, index) => (
-                                    <div
-                                        key={index}
-                                        style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}
-                                    >
+                                    <div key={index} style={{ marginBottom: '8px' }}>
                                         <input
-                                            type={q.type === 'multipleChoice' ? 'radio' : 'checkbox'}
+                                            type={q.correctAnswers.length === 1 ? 'radio' : 'checkbox'}
                                             name={`question-${q.id}`}
                                             value={option}
                                             onChange={() => handleAnswerChange(q.id, option)}
-                                            style={{ marginRight: '8px' }}
+                                            checked={
+                                                (answers[q.id] || []).includes(option) // Preserve state
+                                            }
                                         />
-                                        {option}
+                                        <span style={{ marginLeft: '5px' }}>{option}</span>
                                     </div>
                                 ))}
                             </div>
@@ -134,16 +155,9 @@ const QuizComponent = ({
                             <li key={q.id}>
                                 <p>{q.question}</p>
                                 <p>
-                                    Your Answer: {answers[q.id] ? answers[q.id].join(', ') : 'None'}
-                                    {Array.isArray(answers[q.id]) &&
-                                    answers[q.id].length === q.correctAnswers.length &&
-                                    answers[q.id].every((answer) => q.correctAnswers.includes(answer))
-                                        ? ' (Correct)'
-                                        : ' (Incorrect)'}
+                                    Your Answer: {(answers[q.id] || []).length ? answers[q.id].join(', ') : 'None'}
                                 </p>
-                                <p>
-                                    Correct Answer: {q.correctAnswers.join(', ')}
-                                </p>
+                                <p>Correct Answer: {q.correctAnswers.join(', ')}</p>
                             </li>
                         ))}
                     </ul>

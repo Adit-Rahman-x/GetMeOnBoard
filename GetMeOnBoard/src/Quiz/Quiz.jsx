@@ -14,6 +14,18 @@ const Quiz = () => {
             correctAnswers: ["A library"],
         },
     ]);
+    
+    const handleUpdateQuestion = (id, updatedData) => {
+        setQuestions((prevQuestions) =>
+            prevQuestions.map((q) =>
+                q.id === id
+                    ? { ...q, ...updatedData }
+                    : q
+            )
+        );
+    };
+
+    
 
     const handleAddQuestion = () => {
         const newQuestion = {
@@ -108,7 +120,7 @@ const Quiz = () => {
                     onDeleteQuestion={deleteQuestion}
                     onAddOption={addOptionToQuestion}
                     onDeleteOption={deleteOptionFromQuestion}
-                    onUpdateQuestion={updateQuestion}
+                    onUpdateQuestion={handleUpdateQuestion}
                     onUpdateOption={updateOption}
                     onSetCorrectAnswer={setCorrectAnswer}
                 />
