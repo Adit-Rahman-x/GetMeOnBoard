@@ -29,6 +29,7 @@ const QuizComponent = ({
                 <div
                     style={{
                         width: '65%',
+                        padding: '20px',
                         backgroundColor: 'white',
                         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                         padding: '20px', // Add padding inside the white container
@@ -265,6 +266,8 @@ const QuizComponent = ({
                     style={{
                         backgroundColor:'white',
                         width:'65%',
+                        padding: '20px',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                     }}
                 >
                     <h3
