@@ -33,8 +33,8 @@ const Quiz = () => {
             question: "New Question",
             type: "multipleChoice",
             media: null,
-            options: ["Default Option"], // Add one default option
-            correctAnswers: ["Default Option"], // Mark the default option as correct
+            options: ["Default Option"], 
+            correctAnswers: ["Default Option"], 
         };
         setQuestions([...questions, newQuestion]);
     };
@@ -106,10 +106,14 @@ const Quiz = () => {
     };
 
     return (
-        <div>
+        <div
+            style={{
+                backgroundColor: 'f9f9f9',
+            }}>
+
             <button
                 onClick={() => setIsEmployerView(!isEmployerView)}
-                style={{ position: 'absolute', top: '10px', right: '10px' }}
+                style={{ position: 'relative', top: '10px', right: '10px' }}
             >
                 Switch to {isEmployerView ? 'Employee' : 'Employer'} View
             </button>
