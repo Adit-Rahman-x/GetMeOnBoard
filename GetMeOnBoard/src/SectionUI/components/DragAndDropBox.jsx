@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
-const DragAndDropBox = () => {
+const DragAndDropBox = ({ isEmployeeView }) => {
   const [mediaFile, setMediaFile] = useState(null);
+  const [browseText, setBrowseText] = useState("Browse");
 
   const handleDrop = (e) => {
     e.preventDefault();
+    if (isEmployeeView) return;
     const file = e.dataTransfer.files[0];
-    if (file && (file.type.startsWith("image/") || file.type.startsWith("video/"))) {
-      setMediaFile(file);
-    } else {
-      alert("Please upload an image or video file.");
-    }
+    handleFile(file);
   };
 
   const handleDragOver = (e) => {
@@ -18,9 +16,15 @@ const DragAndDropBox = () => {
   };
 
   const handleFileInput = (e) => {
+    if (isEmployeeView) return;
     const file = e.target.files[0];
+    handleFile(file);
+  };
+
+  const handleFile = (file) => {
     if (file && (file.type.startsWith("image/") || file.type.startsWith("video/"))) {
       setMediaFile(file);
+      setBrowseText("File Added: " + file.name);
     } else {
       alert("Please upload an image or video file.");
     }
@@ -32,11 +36,11 @@ const DragAndDropBox = () => {
       onDragOver={handleDragOver}
       className="drop-zone"
       style={{
-        border: "2px dashed #aaa",
+        border: isEmployeeView ? "none" : "2px dashed #aaa",
         borderRadius: "8px",
         padding: "20px",
         textAlign: "center",
-        cursor: "pointer",
+        cursor: isEmployeeView ? "default" : "pointer",
         marginBottom: "20px",
         backgroundColor: "#f9f9f9",
       }}
@@ -55,19 +59,48 @@ const DragAndDropBox = () => {
             style={{ maxWidth: "100%", maxHeight: "200px", borderRadius: "8px" }}
           />
         )
+      ) : isEmployeeView ? (
+        <p>No media file available</p>
       ) : (
         <p>Drag & drop an image or video here, or click to upload</p>
       )}
-      <input
-        type="file"
-        accept="image/*,video/*"
-        onChange={handleFileInput}
-        style={{ display: "none" }}
-        id="fileInput"
-      />
-      <label htmlFor="fileInput" style={{ color: "#007bff", cursor: "pointer" }}>
-        Browse
-      </label>
+      {!isEmployeeView && (
+        <>
+          <input
+            type="file"
+            accept="image/*,video/*"
+            onChange={handleFileInput}
+            style={{ display: "none" }}
+            id="fileInput"
+          />
+          <label
+            htmlFor="fileInput"
+            style={{
+              display: "block",
+              color: "#007bff",
+              cursor: "pointer",
+              marginTop: "10px",
+              fontSize: "16px",
+              transition: "text-decoration 0.3s ease, color 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+                e.target.style.textDecoration = "underline";
+                e.target.style.color = "#5127b3";
+            }}
+            onMouseLeave={(e) => {
+                e.target.style.textDecoration = "none";
+                e.target.style.color = "#007bff";
+            }}
+          >
+            Browse
+          </label>
+        </>
+      )}
+      {mediaFile && !isEmployeeView && (
+        <p style={{ marginTop: "10px", marginBottom: "0px", color: "#555"}}>
+          {browseText}
+        </p>
+      )}
     </div>
   );
 };

@@ -1,0 +1,12 @@
+/* .source-sans-3-font {
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  } */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+  }  
