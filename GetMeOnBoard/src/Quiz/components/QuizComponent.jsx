@@ -23,33 +23,38 @@ const QuizComponent = ({
                         <div
                             key={q.id}
                             style={{
-                                border: '6px solid black', // Increased border thickness for the question box
+                                border: '6px solid black',
                                 borderRadius: '8px',
                                 padding: '16px',
                                 marginBottom: '16px',
                             }}
                         >
                             {/* Question Section */}
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <h3>
-                                    <textarea
-                                        type="text"
-                                        value={q.question || ''} // Ensure an empty string if undefined
-                                        onChange={(e) =>
-                                            handleUpdateQuestion(q.id, { question: e.target.value }) // Pass only the string value
-                                        }
-                                        style={{
-                                            flexGrow: 1, // Ensures it takes the same width as option textboxes
-                                            fontSize: '14px', // Match the font size of options
-                                            border: '4px solid black',
-                                            padding: '8px',
-                                            borderRadius: '4px',
-                                            resize: 'none', // Prevent manual resizing
-                                            overflowWrap: 'break-word', // Handle long words
-                                            wordWrap: 'break-word',
-                                        }}
-                                    />
-                                </h3>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    marginBottom: '16px', // Add space below the question section
+                                }}
+                            >
+                                <textarea
+                                    value={q.question || ''} // Ensure an empty string if undefined
+                                    onChange={(e) =>
+                                        handleUpdateQuestion(q.id, { question: e.target.value }) // Pass only the string value
+                                    }
+                                    style={{
+                                        width: '100%', // Ensures it takes the same width as option textboxes
+                                        fontSize: '14px', // Match the font size of options
+                                        border: '4px solid black',
+                                        padding: '8px',
+                                        borderRadius: '4px',
+                                        resize: 'none', // Prevent manual resizing
+                                        overflowWrap: 'break-word', // Handle long words
+                                        wordWrap: 'break-word',
+                                        height: '40px', // Same height as the option textboxes
+                                    }}
+                                />
                                 <button
                                     onClick={() => handleDeleteQuestion(q.id)}
                                     style={{
@@ -79,6 +84,11 @@ const QuizComponent = ({
                                             flexGrow: 1,
                                             marginRight: '8px',
                                             fontSize: '14px',
+                                            padding: '8px',
+                                            border: '1px solid #ccc',
+                                            borderRadius: '4px',
+                                            boxSizing: 'border-box',
+                                            height: '40px', // Fixed height for consistency
                                         }}
                                     />
                                     <button
