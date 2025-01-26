@@ -1,12 +1,15 @@
+import { useRef } from 'react'
 import React,{ useState } from 'react'
 import './App.css'
 import VidMessage from './VidMessage'
+import VidTimeStamps from './VidTimeStamp'
+import StepbyStep from './StepbyStep'
 function App() {
-  const [count, setCount] = useState(0)
+  const [mainpoint, setCount] = useState(0)
 
   return (
     <>
-  
+  <StepbyStep></StepbyStep>
     </>
   )
 }
