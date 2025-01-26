@@ -1,3 +1,6 @@
+# GetMeOnBoard
+_Elevator Pitch:_ "GetMeOnBoard: The ultimate platform to onboard new employees effortlessly. Skip the hassle of on-site training—equip your team to hit the ground running from day one, no matter the business."
+
 ## Inspiration
 Have you ever noticed the complexity of onboarding. It's a tedious process that could be heavily simplified. Modern workplaces face challenges when onboarding new employees, often relying on outdated, inefficient processes. We wanted to create a platform that simplifies and streamlines onboarding, saving time for employers and empowering new employees to hit the ground running. The idea of "getting on board" inspired us to create a user-friendly tool that feels intuitive and effective for both managers and new hires.
 
