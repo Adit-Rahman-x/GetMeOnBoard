@@ -1,6 +1,7 @@
 import React from "react";
 import Buttons from "./components/Buttons";
-import FirstImage from "./components/FirstImage.png";
+import Logo from "./components/Logo.png";
+import { motion } from "framer-motion";
 
 const HomePage = () => {
   return (
@@ -12,15 +13,62 @@ const HomePage = () => {
     >
       {/* Full-screen image section */}
       <div
+      style={{
+        display: "flex",
+        flexDirection: "column", // Stack children vertically
+        justifyContent: "center", // Center along the vertical axis
+        alignItems: "center", // Center along the horizontal axis
+        height: "90vh", // Full viewport height
+        width: "100%", // Full width
+        backgroundColor: "#d9eef0", // Optional for background color for the second section
+      }}
+    >
+      {/* Animation Variants */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }} // Start off-screen (bottom) and invisible
+        animate={{ opacity: 1, y: 0 }} // Fade in and move up to its position
+        transition={{ duration: 0.8, delay: 0 }} // Adjust duration and delay
         style={{
-          height: "100vh", // Full viewport height
-          width: "100%", // Full width
-          backgroundImage: `url(${FirstImage})`,
+          height: "40vh", // Full viewport height
+          width: "50%", // Full width
+          backgroundImage: `url(${Logo})`,
           backgroundSize: "cover", // Ensures the image covers the entire area
           backgroundPosition: "center", // Centers the image
           backgroundRepeat: "no-repeat", // Prevents the image from repeating
         }}
-      ></div>
+      />
+
+      <motion.div
+        initial={{ opacity: 0, x: -50 }} // Start off-screen (bottom) and invisible
+        animate={{ opacity: 1, x: 0 }} // Fade in and move up to its position
+        transition={{ duration: 0.8, delay: 0.8 }} // Slightly delayed
+        style={{
+          fontSize: "72px",
+          fontWeight: "bold",
+          textAlign: "center", // Center the text
+          marginBottom: "10px", // Add some space at the bottom
+        }}
+      >
+        <b style={{ color: "#314759" }}>GetM</b>
+        <b style={{ color: "#509fcb" }}>eOn</b>
+        <b style={{ color: "#314759" }}>Board</b>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: 50 }} // Start off-screen (bottom) and invisible
+        animate={{ opacity: 1, x: 0 }} // Fade in and move up to its position
+        transition={{ duration: 0.8, delay: 1.6 }} // Further delayed
+        style={{
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: "#394c61",
+          textAlign: "center", // Center the text
+        }}
+      >
+        Employee Onboarding Made Easy
+      </motion.div>
+    </div>
+
 
       {/* Existing content section */}
       <div

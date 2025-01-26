@@ -1,6 +1,13 @@
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ setCurrentView }) => {
+  const links = [
+    { name: "Home", view: "Home" },
+    { name: "Section Maker", view: "Section Maker" },
+    { name: "Interactive Tour Guide", view: "Interactive Tour Guide" },
+    { name: "Section Quiz", view: "Section Quiz" },
+  ];
+
   return (
     <nav
       style={{
@@ -21,17 +28,14 @@ const Navbar = () => {
           color: "#fff",
         }}
       >
-        <b style={{color: "#cfe0e8"}}>GetM</b><b style={{color: "#509fcb"}}>eOn</b><b style={{color: "#cfe0e8"}}>Board</b>
+        <b style={{ color: "#cfe0e8" }}>GetM</b>
+        <b style={{ color: "#509fcb" }}>eOn</b>
+        <b style={{ color: "#cfe0e8" }}>Board</b>
       </div>
 
       {/* Navigation Links */}
       <div style={{ display: "flex", gap: "20px" }}>
-        {[
-          "Home",
-          "Section Maker",
-          "Interactive Tour Guide",
-          "Section Quiz",
-        ].map((link, index) => (
+        {links.map((link, index) => (
           <a
             key={index}
             href="#"
@@ -43,12 +47,13 @@ const Navbar = () => {
               padding: "5px 10px",
               transition: "color 0.3s ease",
             }}
+            onClick={() => setCurrentView(link.view)} // Change view on click
             onMouseEnter={(e) =>
               (e.target.style.color = "#4CAF50") // Change color on hover
             }
             onMouseLeave={(e) => (e.target.style.color = "#cfe0e8")}
           >
-            {link}
+            {link.name}
           </a>
         ))}
       </div>
